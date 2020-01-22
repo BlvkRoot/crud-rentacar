@@ -14,7 +14,7 @@
         {
             try
             {
-                $this->conexao = new PDO("postgresql:host=$this->host;port=$this->port;dbname=$this->dbName",
+                $this->conexao = new PDO("pgsql:host=$this->host;port=$this->port;dbname=$this->dbName",
                                       $this->user, $this->password, array(PDO::ATTR_PERSISTENT, false));
             }catch(PDOException $ex)
             {
