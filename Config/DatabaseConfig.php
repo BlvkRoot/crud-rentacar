@@ -4,7 +4,7 @@
         private $host = "ec2-107-21-214-101.compute-1.amazonaws.com";
         private $user = "ulyegoafqtopnv";
         private $password = "a9d5dc43bbdbff4b4add817814d6b25135eb4d6d5a0d074baed297021fcc06a7";
-        private $dbName = "db_rent_a_car";
+        private $dbName = "da8h2v1gq7t31g";
         private $port = 5432;
 
         //Conexao
