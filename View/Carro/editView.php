@@ -4,7 +4,7 @@
     foreach($params as $carInfo)
     {
 ?>
-    <form action="store" method="POST">
+    <form action="create" method="POST">
         <input type="hidden" name="id" value="<?= $carInfo['id']?>" style='width: 50%; padding: 10px;'>
         <input type="text" name="plateNumber" placeholder="Placa" id="plateNumber" value="<?= $carInfo['plateNumber']?>"  style='width: 50%; padding: 10px;'><br>
         <input type="text" name="name" placeholder="Nome" id="name" value="<?= $carInfo['name'] ?>"  style='width: 50%; padding: 10px;'><br>

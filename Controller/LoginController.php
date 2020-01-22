@@ -11,13 +11,12 @@
         public function verifyUser()
 		{
             $userCredentials = $this->getPost();
-            
-            session_destroy();
-			$username = isset($_SESSION['username']) ? ($_SESSION['username'] = true) : ($_SESSION['username'] = $userCredentials['username']);
 			
-			$password = isset($_SESSION['password']) ? ($_SESSION['password'] = true) : ($_SESSION['password'] = $userCredentials['password']);
+			$_SESSION['username'] = $userCredentials['username'];
+			
+			$_SESSION['password'] = $userCredentials['password'];
 
-			$result = $this->loginRepository->checkUserCredentials($username, $password);
+			$result = $this->loginRepository->checkUserCredentials($_SESSION['username'], $_SESSION['password']);
 
             
             // var_dump($result); die();

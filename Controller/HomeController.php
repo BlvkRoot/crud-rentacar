@@ -2,30 +2,33 @@
 	session_start();
 	class HomeController extends AppController
 	{
-        private $carRepository;
+        private $carController;
 		private $indexController;
 		private $loginController;
 
 		function __construct()
 		{
-            parent::__construct();
-            $this->carRepository = new CarroRepository();
+			parent::__construct();
+			$this->carController = new CarrosController();
 			$this->indexController = new IndexController();
 			$this->loginController = new LoginController();
 		}
 
 		public function index()
 		{
-			// $listaCarros = $this->carRepository->viewCar();
-			// $this->view->render('Carro/listView', $listaCarros);
 			var_dump('Ola'); die();
- 		}
+		 }
+		 
+		 public function create()
+		 {
+			$this->carController->create();
+		 }
 
 		public function dashboard()
 		{
 			$userCrede = $this->loginController->verifyUser();
 
-			if(($_SESSION['username'] == true) && ($_SESSION['username'] == 'Admin') )
+			if(isset($_SESSION['username']) && ($_SESSION['username'] == 'Admin') )
 			{
 				if ($userCrede > 0) 
 				{
@@ -35,6 +38,23 @@
 					$this->indexController->home();
 				}
 			}
+		}
+
+		public function update(){
+			$this->carController->edit();
+		}
+		
+		public function store(){
+			$this->carController->store();
+		}
+
+		public function destroy(){
+			return $this->carController->delete();
+		}
+		
+		public function logout(){
+			session_destroy();
+			header('Location: home');
 		}
 
 	}

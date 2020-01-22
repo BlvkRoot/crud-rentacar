@@ -1,6 +1,4 @@
 <?php
-    session_start();
-
     class CarrosController extends AppController
     {
         private $carRepo;
@@ -16,6 +14,20 @@
             //return $this->carRepo->viewCar();
         }
 
+        function create()
+        {
+            if($this->isPost())
+            {
+                $dados = $this->getPost();
+
+                // var_dump($dados); die();
+                $model = $this->carRepo->setUpDados($dados);
+
+                $model->save();
+                header('Location: store');
+            }
+        }
+
         //Save car details
         function store()
         {
@@ -26,16 +38,7 @@
              * Then Check for empty fields in the form
              * Save car properties if no fields empty
              * 
-             */
-            if($this->isPost())
-            {
-                $dados = $this->getPost();
-
-                $model = $this->carRepo->setUpDados($dados);
-
-                $model->save();
-                // header('Location: store');
-            }           
+             */        
         }
 
         function list()
