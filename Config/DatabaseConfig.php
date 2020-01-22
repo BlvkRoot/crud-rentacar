@@ -15,7 +15,7 @@
             try
             {
                 $this->conexao = new PDO("pgsql:host=$this->host;port=$this->port;dbname=$this->dbName",
-                                      $this->user, $this->password, array(PDO::ATTR_AUTOCOMMIT, 0));
+                                      $this->user, $this->password, array(PDO::ATTR_AUTOCOMMIT, 1));
             }catch(PDOException $ex)
             {
                 echo "Erro: " . $ex->getMessage();
