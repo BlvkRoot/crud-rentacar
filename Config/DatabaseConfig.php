@@ -12,10 +12,14 @@
 
         public function __construct()
         {
+			$dsn = "pgsql:host=$this->host;port=$this->port;dbname=$this->dbName";
             try
             {
-                $this->conexao = new PDO("pgsql:host=$this->host;port=$this->port;dbname=$this->dbName",
-                                      $this->user, $this->password);
+                $this->conexao = new PDO($dsn, $this->user, $this->password);
+				
+				$this->conexao->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+				$this->conexao->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+				$this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXECPTION);
             }catch(PDOException $ex)
             {
                 echo "Erro: " . $ex->getMessage();
