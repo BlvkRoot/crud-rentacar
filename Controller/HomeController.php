@@ -16,7 +16,12 @@
 
 		public function index()
 		{
-			var_dump('Ola'); die();
+			$this->indexController->index();
+		 }
+
+		 public function createCar()
+		 {
+			return $this->view->render('Carro/createView');
 		 }
 		 
 		 public function create()
@@ -26,33 +31,42 @@
 
 		public function dashboard()
 		{
-			$userCrede = $this->loginController->verifyUser();
+			$userCheck = $this->loginController->verifyUser();
 
-			if(isset($_SESSION['username']) && ($_SESSION['username'] == 'Admin') )
+			if($userCheck > 0) 
 			{
-				if ($userCrede > 0) 
-				{
-					$this->indexController->dashboard();
-				}else
-				{
-					$this->indexController->home();
-				}
+				$this->indexController->adminPanel();
+				
+				// if(isset($_SESSION['username']) && ($_SESSION['username'] == 'Admin') )
+				// {
+				// 	$this->indexController->adminPanel();
+				// }else
+				// {
+				// 	$this->indexController->home();
+				// }
+
+			}else{
+				$this->index();
 			}
 		}
 
-		public function update(){
+		public function update()
+		{
 			$this->carController->edit();
 		}
 		
-		public function store(){
+		public function store()
+		{
 			$this->carController->store();
 		}
 
-		public function destroy(){
+		public function destroy()
+		{
 			return $this->carController->delete();
 		}
 		
-		public function logout(){
+		public function logout()
+		{
 			session_destroy();
 			header('Location: home');
 		}

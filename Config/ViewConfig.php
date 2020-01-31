@@ -2,7 +2,7 @@
 
     class ViewConfig
     {
-        public static function render($nomeDaView, $params = null)
+        public static function render($nomeDaView, $params = null, $previous = '', $next = '')
         {
             $viewPath = "View/";
             $view = $viewPath.$nomeDaView.'.php';

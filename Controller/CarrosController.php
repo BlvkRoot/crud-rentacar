@@ -2,17 +2,21 @@
     class CarrosController extends AppController
     {
         private $carRepo;
-
+        private $paginationController;
+        
         function __construct()
         {
             parent::__construct();
             $this->carRepo = new CarroRepository();
+            $this->paginationController = new PaginationController();
+
         }
 
         function index()
         {
             //return $this->carRepo->viewCar();
         }
+		 
 
         function create()
         {
@@ -32,7 +36,9 @@
         function store()
         {
             $listaCarros = $this->carRepo->viewCar();
-            $this->view->render('Carro/dashboardView', $listaCarros);
+            $nextPageLink = $this->paginationController->next();
+            $previousPageLink = $this->paginationController->previous();
+            $this->view->render('Carro/dashboardView', $listaCarros,$previousPageLink, $nextPageLink);
             /***
              * Check if the submit form variable is set to save
              * Then Check for empty fields in the form

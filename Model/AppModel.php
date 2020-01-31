@@ -16,7 +16,7 @@ class AppModel
     {
         foreach ($dados as $key => $value) {
             if (property_exists($this, $key)) {
-                $this->$key = $value;
+                $this->$key = htmlspecialchars($value);
             }
         }
         return $this;
@@ -25,6 +25,7 @@ class AppModel
     public function save()
     {
         $vars = get_object_vars($this);
+
         if($this->id != "save"){
             $sql = $this->make_update($vars);
         } else {
@@ -58,8 +59,8 @@ class AppModel
             if ($this->is_bd_field($key)) {
                 $field_names .= $key . ',';
 
-                $field_names2 .= "'".$value."',";
-                array_push($field_values, $value);
+                $field_names2 .= "'".htmlspecialchars($value)."',";
+                array_push($field_values, htmlspecialchars($value));
             }
         }
 
@@ -77,8 +78,8 @@ class AppModel
 
         foreach ($fields as $key => $value) {
             if ($this->is_bd_field($key)) {
-                $field_names .= $key . " = '".$value."',";
-                array_push($field_values, $value);
+                $field_names .= $key . " = '".htmlspecialchars($value)."',";
+                array_push($field_values, htmlspecialchars($value));
             }
         }
 

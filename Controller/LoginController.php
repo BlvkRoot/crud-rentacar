@@ -12,14 +12,17 @@
 		{
             $userCredentials = $this->getPost();
 			
-			$_SESSION['username'] = $userCredentials['username'];
+			// $_SESSION['username'] = $userCredentials['username'];
 			
-			$_SESSION['password'] = $userCredentials['password'];
+            // $username = $userCredentials['username'];
 
-			$result = $this->loginRepository->checkUserCredentials($_SESSION['username'], $_SESSION['password']);
+			// $_SESSION['password'] = $userCredentials['password'];
 
+            // $password = $userCredentials['password'];
+
+
+            $result = $this->loginRepository->checkUserCredentials('Admin', 'admin');
             
-            // var_dump($result); die();
 			return $result;
 		}
 

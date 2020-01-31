@@ -1,6 +1,7 @@
 const inputs = document.querySelectorAll('.input_field');
 const success = '2px solid green';
 const error = '2px solid red';
+
 const regPatterns = {
 
 	name: /^[a-zA-Z\s]{3,}$/,
@@ -32,13 +33,13 @@ inputs.forEach((input) => {
 		let field = event.target;
 		let fieldValue = event.target.attributes.name.value;
 
-		console.log(fieldValue);
 		validateField(field, regPatterns[fieldValue]);
 	});
 });
 	
+let saveBtn = document.getElementById('saveBtn');
 
-function validateEmptyFields(){
+saveBtn.addEventListener('click', (event) => {
 
 	for(let i = 0; i < inputs.length; i++) 
 	{
@@ -47,10 +48,13 @@ function validateEmptyFields(){
 		if(inputs[i].value == "" || validateField(field, regPatterns[field.name]) == false)
 		{
 			inputs[i].style.border = error;
-			return false;
+			event.preventDefault();
 		}else{
 			
 			inputs[i].style.border = success;
 		}
 	}
-}
+
+});
+
+	
